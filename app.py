@@ -9,8 +9,6 @@ import logging
 from logging import Formatter, FileHandler
 import os
 import userMatcher
-#from flask.ext.googlemaps import GoogleMaps
-#from flask.ext.googlemaps import Map
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -18,12 +16,6 @@ import userMatcher
 app = Flask(__name__)
 #heroku = Heroku(app)
 app.config.from_object('config')
-#GoogleMaps(app)
-#<<<<<<< HEAD
-#=======
-#from models import User # needs to be after app is declared
-#>>>>>>> af1add2edbfeab75cc5ec0756fb8e49fab9513ac
-
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request
@@ -48,38 +40,10 @@ def login_required(test):
 # Controllers.
 #----------------------------------------------------------------------------#
 #need jsonify imported for ajax to work
-# Ajax call handler - Server side
-fieldNames = ['Timestamp', 'Name', 'ID', 'Phone number', 'Email', 'Gender', 'How friendly were the staff?', 'How efficient was the process?', 'Overall Satisfaction?', 'Ethnicity', 'Age', 'Are you a veteran?', 'Have you been diagnosed with any of the following?', 'What is your current monthly income?', 'Where were you living prior to coming here?', 'Why did you choose to come here? [Rent/Utility bills]', 'Why did you choose to come here? [Prescription/Medical bills]', 'Why did you choose to come here? [Loss of wages]', 'Why did you choose to come here? [Family expenses]', 'Why did you choose to come here? [Death in family]', 'Why did you choose to come here? [Relocation costs]', 'Why did you choose to come here? [Domestic violence]', 'Why did you choose to come here? [Needed food]', 'Why did you choose to come here? [Needed clothing]', 'Why did you choose to come here? [Wanted information about shelters]', 'How did you hear of this program?', '"If you were referred to this program by another participant please enter your referrer\'s name below."', 'Which problems were you looking to solve? [Receiving money]', 'Was it made clear how the program worked?', 'Overall Impression of Staff?', 'Any other information we should know about you?', 'Which problems were you looking to solve? [Receiving vouchers for goods/items]', 'Which problems were you looking to solve? [Receiving referral information]', 'Which problems were you looking to solve? [Receiving housing]', 'Which problems were you looking to solve? [Receiving counseling]', 'How well did the staff understand your situation?', 'Please rank the helpfulness of the following services for you to the best of your ability. [Reception/General Efficiency]', '"What was the approximate zipcode of your location prior to arriving here?  If you are not sure or do not wish to answer please write N/A."', 'Please rank the helpfulness of the following services for you to the best of your ability. [Meal Provisions]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Health and Disabilities Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Substance Abuse Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Domestic Violence Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Employment and Education Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Energy and Housing Assistance]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Receiving Money and Goods]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Legal Services]', 'Please rank the following services of this program to the best of your ability. [Housing Services]', 'Please rank the following services of this program to the best of your ability. [Technology Services]', 'Please rank the following services of this program to the best of your ability. [Religious Resources]', 'Please rank the following services of this program to the best of your ability. [Comm]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Hygiene Care]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Technology Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Finding Communities]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Receiving Information and Resources]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Counseling Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Housing Services]', 'Please rank the helpfulness of the following services for you to the best of your ability. [Finding Religious Communities]', 'Any additional comments?', 'Were there any services which you would like to see improved?', 'Were there any services which particularly impressed you?', 'Any other information?', 'Wa', 'Why did you choose to come here? [Row 11]', 'Why did you choose to come here? [Row 4]']
-
-@app.route('/ajaxtest', methods=['POST'])
-def testAjax():
-    n = int(request.form['exponent'])
-    return jsonify({'power2': str(2**n),
-                    'power3': str(3**n)})
 
 @app.route('/')
 def home():
     return render_template('pages/placeholder.home.html')
-
-@app.route('/about')
-def about():
-    return render_template('pages/placeholder.about.html')
-
-# People pages
-@app.route('/seeking', methods=['GET', 'POST'])
-def seeking():
-    if request.method == 'POST':
-        print(request.form)
-        return render_template('pages/seeking.html')
-    return render_template('pages/seeking.html')
-
-@app.route('/orgs')
-def organizations():
-    return render_template('pages/organizations.html')
-
-@app.route('/vols')
-def volunteers():
-    return render_template('pages/volunteers.html')
 
 @app.route('/matcher', methods=['GET', 'POST'])
 def connectMatcher():
