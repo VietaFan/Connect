@@ -10,8 +10,9 @@ from oauth2client.file import Storage
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    flags.add_argument('-u', '--user', help='dummy user argument')
 except ImportError:
-    flags, extras = parser.parse_known_args(None)
+    flags = None
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/sheets.googleapis.com-python-quickstart.json
