@@ -1,0 +1,62 @@
+
+/**
+ * @file
+ * Main stylesheet file.
+ */
+
+
+/*****************************************************************************
+ * Main elements
+ ****************************************************************************/
+html {
+  overflow-y: scroll;
+}
+a {
+  cursor: pointer;
+}
+::selection {
+  background: #555;
+  color: #FFF;
+}
+::-moz-selection {
+  background: #555;
+  color: #FFF;
+}
+::-webkit-selection {
+  background: #555;
+  color: #FFF;
+}
+
+
+
+/* You can style pseudo elements and give them content,
+   as if they were real elements on the page */
+
+
+/* Create a counter with a pseudo element */
+
+.container span::after{
+
+	/* Every time this rule is executed, the 
+	   counter value is increased by 1 */
+	counter-increment: cnt;
+
+	/* Add the counter value as part of the content */
+	content:" #" counter(cnt);
+
+	display:inline-block;
+	padding:4px;
+}
+
+/* Pseudo elements can even access attributes of their parent element */
+
+
+
+/* Main elements end */
+
+
+/*****************************************************************************
+ * Various other styles
+ ****************************************************************************/
+
+/* Various other styles end */

@@ -1,0 +1,29 @@
+<html>
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<head>
+<title> Connect User Matcher </title>
+</head>
+<body>
+<h2> Connect User Matcher </h2>
+<h4> Please enter your name or email; Connect will search for other users with similar interests if you have already signed up with Connect. </h4>
+<form action="/matcher" method="post">
+<input type="string" name="field">
+<span><button type="submit">Enter</button></span></form>
+{% if matches %}
+<p>We found these other people with similar interests to yours using Connect.</p>
+<table>
+<tr> <td> Rank </td> <td> Name </td> <td> Email </td> <td> Similarity </tr> 
+{% for user in matches %}
+<tr> <td>#{{ user.rank }} </td><td> {{ user.name }}</td> <td> {{ user.email }}</td> <td> {{ user.sim }}</td> </tr>
+{% endfor %}
+</table>
+{% endif %}
+{% if error %}
+Connect could not find you in the database. If you are interested in using Connect, please sign up using the menu in the right-hand corner. 
+{% endif %}
+<a href="/">Return to Stone Soup home page</a>
+</body>
+{% endblock %}
+</html>
