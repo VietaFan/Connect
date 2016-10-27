@@ -10,7 +10,6 @@ from oauth2client.file import Storage
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-    flags.add_argument('-u', '--user', help='dummy user argument')
 except ImportError:
     flags = None
 
