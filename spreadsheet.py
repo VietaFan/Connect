@@ -9,7 +9,7 @@ from oauth2client.file import Storage
 
 try:
     import argparse
-    flags, extras = argparse.ArgumentParser(parents=[tools.argparser]).parse_args(None)
+    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
