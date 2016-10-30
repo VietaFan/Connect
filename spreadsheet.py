@@ -32,7 +32,7 @@ def get_credentials():
     If nothing has been stored, or if the stored credentials are invalid,
     the OAuth2 flow is completed to obtain the new credentials.
 
-    Returns:
+     Returns:
         Credentials, the obtained credential.
     """
     home_dir = os.path.expanduser('~')
