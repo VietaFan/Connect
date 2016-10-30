@@ -1,11 +1,11 @@
 import spreadsheet
 users = {}
-spreadsheet.setSpreadsheet('1ThDLDzJH7lzZcw1Q9cLNnUJhE6bLBshyULiaWCOmevw')
-users['Other homeless people'] = spreadsheet.getRowList(2, 'N')
-spreadsheet.setSpreadsheet('1eVQhOozH0YUJ_V9Jxay8ictAtqZkhjUgQ3nAYCdSQVM')
-users['Volunteers'] = spreadsheet.getRowList(2, 'U')
-spreadsheet.setSpreadsheet('1dMYV3DBb9uS4wEweWOAyGiAdOY9FfPrAfvRqf_KW6B4')
-users['Organizations'] = spreadsheet.getRowList(2, 'K')
+##spreadsheet.setSpreadsheet('1ThDLDzJH7lzZcw1Q9cLNnUJhE6bLBshyULiaWCOmevw')
+##users['Other homeless people'] = spreadsheet.getRowList(2, 'N')
+##spreadsheet.setSpreadsheet('1eVQhOozH0YUJ_V9Jxay8ictAtqZkhjUgQ3nAYCdSQVM')
+##users['Volunteers'] = spreadsheet.getRowList(2, 'U')
+##spreadsheet.setSpreadsheet('1dMYV3DBb9uS4wEweWOAyGiAdOY9FfPrAfvRqf_KW6B4')
+##users['Organizations'] = spreadsheet.getRowList(2, 'K')
 def getMatchCount(user1, user2):
     count = 0
     for i in range(min(len(user1),len(user2))):
