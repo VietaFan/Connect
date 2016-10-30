@@ -9,7 +9,7 @@ from oauth2client.file import Storage
 
 try:
     import argparse
-    flags, extras = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
@@ -18,13 +18,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Sheets API Python Quickstart'
-LAST_COLUMN = 'BP'
-DATA_ROW_CONST = 3
-NUM_FIELDS = 68
 
-spreadsheetId = '1IdZdzPzyWN1gvzdJ1vzvzGbFwHS1wwqohi25q0e52nM'
-service = None
-sp_values = None
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -49,45 +43,39 @@ def get_credentials():
         flow.user_agent = APPLICATION_NAME
         if flags:
             credentials = tools.run_flow(flow, store, flags)
-        #else: # Needed only for compatibility with Python 2.6
-            #credentials = tools.run(flow, store)
+        else: # Needed only for compatibility with Python 2.6
+            credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def init():
+def main():
     """Shows basic usage of the Sheets API.
 
     Creates a Sheets API service object and prints the names and majors of
     students in a sample spreadsheet:
     https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     """
-    global service, sp_values # pylint: disable=locally-disabled, invalid-name
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
                     'version=v4')
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
-    sp_values = service.spreadsheets().values()
-init()
-def setSpreadsheet(spId):
-    global spreadsheetId
-    spreadsheetId = spId
-def getRows(startRow=2, endRow=2, startCol='A', endCol=LAST_COLUMN):
-    rangeName = '%s%s:%s%s' % (startCol, startRow, endCol, endRow)
-    values = sp_values.get(spreadsheetId=spreadsheetId, range=rangeName).execute().get('values', [])
-    if not values:
-        raise Exception('No data found!')
-    return values
 
-def getRowList(startRow, endCol, startCol='A'):
-    row = startRow
-    rows = []
-    while True:
-        rangeName = '%s%s:%s%s' % (startCol, row, endCol, row)
-        values = sp_values.get(spreadsheetId=spreadsheetId, range=rangeName).execute().get('values', [])
-        if not values or not values[0]:
-            return rows
-        rows += values
-        row += 1
-    return rows
+    spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+    rangeName = 'Class Data!A2:E'
+    result = service.spreadsheets().values().get(
+        spreadsheetId=spreadsheetId, range=rangeName).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            print('%s, %s' % (row[0], row[4]))
+
+
+if __name__ == '__main__':
+    main()
