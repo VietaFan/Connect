@@ -8,7 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 import os
-import userMatcher
+#import usermatcher
+import quickstart
+
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -45,6 +47,7 @@ def login_required(test):
 def home():
     return render_template('pages/placeholder.home.html')
 
+'''
 @app.route('/matcher', methods=['GET', 'POST'])
 def connectMatcher():
     if request.method == 'POST':
@@ -61,6 +64,7 @@ def connectMatcher():
                             'sim':L[i][0]})
         return render_template('pages/connect_matcher.html', matches=matches)
     return render_template('pages/connect_matcher.html')
+'''
 
 # Connect pages
 @app.route('/connect-seek')
