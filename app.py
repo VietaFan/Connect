@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 import os
-#import userMatcher
+import userMatcher
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#

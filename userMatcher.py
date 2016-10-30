@@ -1,4 +1,4 @@
-import spreadsheet
+import quickstart
 users = {}
 spreadsheet.setSpreadsheet('1ThDLDzJH7lzZcw1Q9cLNnUJhE6bLBshyULiaWCOmevw')
 users['Other homeless people'] = spreadsheet.getRowList(2, 'N')

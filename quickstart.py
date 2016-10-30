@@ -9,7 +9,7 @@ from oauth2client.file import Storage
 
 try:
     import argparse
-    flags, extras = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
@@ -21,10 +21,6 @@ APPLICATION_NAME = 'Google Sheets API Python Quickstart'
 LAST_COLUMN = 'BP'
 DATA_ROW_CONST = 3
 NUM_FIELDS = 68
-
-spreadsheetId = '1IdZdzPzyWN1gvzdJ1vzvzGbFwHS1wwqohi25q0e52nM'
-service = None
-sp_values = None
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -49,8 +45,8 @@ def get_credentials():
         flow.user_agent = APPLICATION_NAME
         if flags:
             credentials = tools.run_flow(flow, store, flags)
-        #else: # Needed only for compatibility with Python 2.6
-            #credentials = tools.run(flow, store)
+        else: # Needed only for compatibility with Python 2.6
+            credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
 
