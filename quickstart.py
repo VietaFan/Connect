@@ -1,8 +1,9 @@
+
 from __future__ import print_function
 import httplib2
 import os
 
-from googleapiclient import discovery
+from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
@@ -62,13 +63,12 @@ def main():
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
 
-    spreadsheetId = '1ThDLDzJH7lzZcw1Q9cLNnUJhE6bLBshyULiaWCOmevw'
-    rangeName = 'Form Responses 1!A2:E'
+    spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+    rangeName = 'Class Data!A2:E'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
-    print(result)
-    print(values)
+
     if not values:
         print('No data found.')
     else:

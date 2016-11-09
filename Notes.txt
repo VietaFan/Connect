@@ -1,7 +1,7 @@
 Things to do:
 
 Use Google Scripts to preprocess spreadsheets https://developers.google.com/apps-script/reference/spreadsheet/?
-
+https://developers.google.com/apps-script/reference/spreadsheet/
 
 
 Ideas to consider:
